@@ -1,1 +1,86 @@
-XDDDDDDDDDDDD
+<div class="container mt-4">
+    <h2>Checkout</h2>
+    <div class="row"> <!-- Agregamos una fila -->
+        <!-- Card del Vuelo -->
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5>Información del Vuelo</h5>
+                </div>
+                <div class="card-body">
+                    <div *ngIf="flight">
+                        <img [src]="flight.companyLogo" alt="{{ flight.companyName }}" class="card-img-top"
+                            style="max-height: 100px; object-fit: cover;">
+                        <h5 class="card-title">{{ flight.cityDestination }}, {{ flight.countryDestination }}</h5>
+                        <p class="card-text">Compañía: {{ flight.companyName }}</p>
+                        <p class="card-text">Precio: ${{ flight.price }}</p>
+                        <p class="card-text">Fecha de Despegue: {{ flight.from | date: 'MMMM d, y, h:mm a' }}</p>
+                        <p class="card-text">Fecha de Aterrizaje: {{ flight.to | date: 'MMMM d, y, h:mm a' }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card de la Habitación -->
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5>Información de la Habitación</h5>
+                </div>
+                <div class="card-body">
+                    <div *ngIf="room">
+                        <h6>{{ room.hotel | uppercase }} - {{ room.type }}</h6>
+                        <p>{{ room.description }}</p>
+                        <p>Reviews: {{ room.reviews }}</p>
+                        <p>Amenities: {{ room.amenities.join(', ') }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="mt-4">
+        <h5>Información del Pasajero</h5>
+        <form #form="ngForm" (ngSubmit)="onSubmit()" novalidate>
+            <div class="mb-3">
+                <label for="firstName" class="form-label">First Name</label>
+                <input type="text" class="form-control" id="firstName" name="firstName" required maxlength="50" #firstName="ngModel" [(ngModel)]="firstName">
+                <div *ngIf="firstName.invalid && firstName.touched" class="text-danger">
+                    <div *ngIf="firstName.errors?.['required']">El nombre es requerido.</div>
+                    <div *ngIf="firstName.errors?.['maxlength']">El nombre no puede exceder los 50 caracteres.</div>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="lastName" class="form-label">Last Name</label>
+                <input type="text" class="form-control" id="lastName" required>
+            </div>
+            <div class="mb-3">
+                <label for="identificationType" class="form-label">Identification Type</label>
+                <select class="form-select" id="identificationType" required>
+                    <option value="" disabled selected>Select an option</option>
+                    <option value="passport">Passport</option>
+                    <option value="idCard">ID Card</option>
+                    <option value="driverLicense">Driver License</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="identificationNumber" class="form-label">Identification Number</label>
+                <input type="text" class="form-control" id="identificationNumber" required>
+            </div>
+            <div class="mb-3">
+                <label for="address" class="form-label">Address</label>
+                <input type="text" class="form-control" id="address" required>
+            </div>
+            <div class="mb-3">
+                <label for="country" class="form-label">Country</label>
+                <input type="text" class="form-control" id="country" required>
+            </div>
+            <div class="mb-3">
+                <label for="city" class="form-label">City</label>
+                <input type="text" class="form-control" id="city" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>
