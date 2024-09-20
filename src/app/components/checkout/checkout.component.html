@@ -42,45 +42,57 @@
 
     <div class="mt-4">
         <h5>Información del Pasajero</h5>
-        <form #form="ngForm" (ngSubmit)="onSubmit()" novalidate>
+        <form #form="ngForm" (ngSubmit)="onSubmit(form)" novalidate>
             <div class="mb-3">
                 <label for="firstName" class="form-label">First Name</label>
-                <input type="text" class="form-control" id="firstName" name="firstName" required maxlength="50" #firstName="ngModel" [(ngModel)]="firstName">
+                <input type="text" class="form-control" id="firstName" name="firstName" required maxlength="50" [(ngModel)]="formData.firstName" #firstName="ngModel">
                 <div *ngIf="firstName.invalid && firstName.touched" class="text-danger">
                     <div *ngIf="firstName.errors?.['required']">El nombre es requerido.</div>
                     <div *ngIf="firstName.errors?.['maxlength']">El nombre no puede exceder los 50 caracteres.</div>
                 </div>
             </div>
+        
             <div class="mb-3">
                 <label for="lastName" class="form-label">Last Name</label>
-                <input type="text" class="form-control" id="lastName" required>
+                <input type="text" class="form-control" id="lastName" name="lastName" required maxlength="50" [(ngModel)]="formData.lastName" #lastName="ngModel">
+                <div *ngIf="lastName.invalid && lastName.touched" class="text-danger">
+                    <div *ngIf="lastName.errors?.['required']">El nombre es requerido.</div>
+                    <div *ngIf="lastName.errors?.['maxlength']">El nombre no puede exceder los 50 caracteres.</div>
+                </div>
             </div>
+        
             <div class="mb-3">
                 <label for="identificationType" class="form-label">Identification Type</label>
-                <select class="form-select" id="identificationType" required>
+                <select class="form-select" id="identificationType"  [(ngModel)]="formData.identificationType" name="identificationType">
                     <option value="" disabled selected>Select an option</option>
                     <option value="passport">Passport</option>
                     <option value="idCard">ID Card</option>
                     <option value="driverLicense">Driver License</option>
                 </select>
             </div>
+        
             <div class="mb-3">
                 <label for="identificationNumber" class="form-label">Identification Number</label>
-                <input type="text" class="form-control" id="identificationNumber" required>
+                <input type="text" class="form-control" id="identificationNumber"  [(ngModel)]="formData.identificationNumber" name="identificationNumber">
             </div>
+        
             <div class="mb-3">
                 <label for="address" class="form-label">Address</label>
-                <input type="text" class="form-control" id="address" required>
+                <input type="text" class="form-control" id="address"  [(ngModel)]="formData.address" name="address">
             </div>
+        
             <div class="mb-3">
                 <label for="country" class="form-label">Country</label>
-                <input type="text" class="form-control" id="country" required>
+                <input type="text" class="form-control" id="country"  [(ngModel)]="formData.country" name="country">
             </div>
+        
             <div class="mb-3">
                 <label for="city" class="form-label">City</label>
-                <input type="text" class="form-control" id="city" required>
+                <input type="text" class="form-control" id="city"  [(ngModel)]="formData.city" name="city">
             </div>
+        
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
+        
     </div>
 </div>

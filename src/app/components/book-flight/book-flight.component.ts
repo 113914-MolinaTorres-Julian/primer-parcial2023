@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FLIGHT_LIST } from '../../data/flight-data';
 import { DateFormatPipe } from '../../pipes/date-format.pipe';
 import { FlightService } from '../../services/flight.service';
@@ -15,7 +15,7 @@ import { CommonModule } from '@angular/common';
 export class BookFlightComponent implements OnInit {
   flights = FLIGHT_LIST;
 
-  constructor(private flightService: FlightService) { }
+  private flightService = inject(FlightService)
 
   ngOnInit(): void {
   }

@@ -4,7 +4,7 @@ import { Flight } from '../../models/flight';
 import { Room } from '../../models/room';
 import { DateFormatPipe } from '../../pipes/date-format.pipe';
 import { CommonModule, UpperCasePipe } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { Form, FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-checkout',
@@ -14,11 +14,25 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './checkout.component.css'
 })
 export class CheckoutComponent {
-onSubmit() {
-throw new Error('Method not implemented.');
-}
+  formData = {
+    firstName: '',
+    lastName: '',
+    identificationType: '',
+    identificationNumber: '',
+    address: '',
+    country: '',
+    city: ''
+  };
+
   @Input() room: Room | null = null; // Recibe la habitación seleccionada
   @Input() flight: Flight | null = null;
 
-  firstName: string = '';
+  onSubmit(form: any) {
+    if (!form.valid) {
+      console.log('Formulario inválido');
+      return;
+    } else {
+      console.log('Formulario válido: ', this.formData);
+    }
+  }
 }
