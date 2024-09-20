@@ -1,2 +1,3 @@
-<app-book-flight *ngIf="!showRooms"></app-book-flight>
-<app-room-list *ngIf="showRooms"></app-room-list>
+<app-book-flight *ngIf="!showRooms && !showCheckout"></app-book-flight>
+<app-room-list *ngIf="showRooms" (roomSelected)="selectRoom($event)"></app-room-list>
+<app-checkout *ngIf="showCheckout" [room]="selectedRoom"></app-checkout>

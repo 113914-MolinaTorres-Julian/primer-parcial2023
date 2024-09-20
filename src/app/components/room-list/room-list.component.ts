@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Room } from '../../models/room';
 import { ROOM_LIST } from '../../data/room-data';
 import { FlightService } from '../../services/flight.service';
@@ -14,6 +14,7 @@ import { CommonModule, UpperCasePipe } from '@angular/common';
 export class RoomListComponent implements OnInit {
   rooms: Room[] = [];
   destinationId: string = '';
+  @Output() roomSelected = new EventEmitter<Room>();
 
   constructor(private flightService: FlightService) { }
 
@@ -25,8 +26,6 @@ export class RoomListComponent implements OnInit {
   }
 
   selectRoom(room: Room): void {
-    // Implementa la lógica para manejar la selección de la habitación
-    console.log('Selected room:', room);
-    // Puedes agregar lógica para redirigir al usuario a otro componente o hacer algo con la habitación seleccionada
+    this.roomSelected.emit(room)
   }
 }

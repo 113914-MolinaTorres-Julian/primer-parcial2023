@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FlightService } from '../../services/flight.service';
 import { Flight } from '../../models/flight';
 import { Room } from '../../models/room';
@@ -13,5 +13,5 @@ import { UpperCasePipe } from '@angular/common';
   styleUrl: './checkout.component.css'
 })
 export class CheckoutComponent  {
-  
+  @Input() room: Room | null = null; // Recibe la habitación seleccionada
 }
