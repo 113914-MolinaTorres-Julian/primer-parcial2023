@@ -1,0 +1,17 @@
+<div class="container">
+    <div class="row">
+        <div *ngFor="let flight of flights" class="col-md-4 mb-4">
+            <div class="card">
+                <img [src]="flight.companyLogo" alt="{{ flight.companyName }} logo" class="card-img-top"
+                    style="max-height: 200px; object-fit: cover;">
+                <div class="card-body">
+                    <h5 class="card-title">{{ flight.cityDestination }}, {{ flight.countryDestination }}</h5>
+                    <p class="card-text">Price: ${{ flight.price }}</p>
+                    <p class="card-text">Departure: {{ flight.from | dateFormat }}</p>
+                    <p class="card-text">Arrival: {{ flight.to | dateFormat }}</p>
+                    <button class="btn btn-primary" (click)="selectFlight(flight.destinationId)">Select</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

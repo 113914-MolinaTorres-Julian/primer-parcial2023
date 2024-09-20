@@ -1,0 +1,17 @@
+<div class="container">
+    <div class="row">
+        <div *ngFor="let room of rooms" class="col-md-4 mb-4">
+            <div class="card">
+                <img [src]="room.photo" alt="{{ room.hotel }}" class="card-img-top"
+                    style="max-height: 200px; object-fit: cover;">
+                <div class="card-body">
+                    <h5 class="card-title">{{ room.hotel | uppercase }} - {{ room.type }}</h5>
+                    <p class="card-text">{{ room.description }}</p>
+                    <p class="card-text">Reviews: {{ room.reviews }}</p>
+                    <p class="card-text">Amenities: {{ room.amenities.join(', ') }}</p>
+                    <button class="btn btn-primary" (click)="selectRoom(room)">Select</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
